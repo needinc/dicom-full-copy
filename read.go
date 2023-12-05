@@ -766,6 +766,7 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 		return nil, err
 	}
 	debug.Logf("readElement: vl: %d", vl)
+	vl = 0
 
 	fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 	val, err := r.readValue(*t, vr, vl, readImplicit, d, fc)
