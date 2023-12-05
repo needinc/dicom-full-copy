@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/suyashkumar/dicom/pkg/tag"
+	"github.com/needinc/dicom-full-copy/pkg/tag"
 
-	"github.com/suyashkumar/dicom/pkg/frame"
+	"github.com/needinc/dicom-full-copy/pkg/frame"
 
-	"github.com/suyashkumar/dicom"
+	"github.com/needinc/dicom-full-copy"
 )
 
 // TestParse is an end-to-end sanity check over DICOMs in testdata/. Currently,
