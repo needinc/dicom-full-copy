@@ -774,7 +774,12 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 		return nil, err
 	}
 
-	return &Element{Tag: *t, ValueRepresentation: tag.GetVRKind(*t, vr), RawValueRepresentation: vr, ValueLength: vl, Value: val}, nil
+	elem := &Element{Tag: *t, ValueRepresentation: tag.GetVRKind(*t, vr), RawValueRepresentation: vr, ValueLength: vl, Value: val}
+	if vr == "SQ" {
+		fmt.Println("SQ Element: ", elem.String())
+	}
+
+	return elem, nil
 
 }
 
