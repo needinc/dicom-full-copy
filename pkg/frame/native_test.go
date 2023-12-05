@@ -4,7 +4,7 @@ import (
 	"image"
 	"testing"
 
-	"github.com/suyashkumar/dicom/pkg/frame"
+	"github.com/needinc/dicom-full-copy/pkg/frame"
 )
 
 // point represents a 2D point for testing.

@@ -2,7 +2,7 @@ package personname_test
 
 import (
 	"fmt"
-	"github.com/suyashkumar/dicom/pkg/personname"
+	"github.com/needinc/dicom-full-copy/pkg/personname"
 )
 
 // The below test does not pass, I think due to the ideograms being incorrectly

@@ -27,12 +27,12 @@ import (
 	"io"
 	"os"
 
-	"github.com/suyashkumar/dicom/pkg/charset"
-	"github.com/suyashkumar/dicom/pkg/debug"
-	"github.com/suyashkumar/dicom/pkg/dicomio"
-	"github.com/suyashkumar/dicom/pkg/frame"
-	"github.com/suyashkumar/dicom/pkg/tag"
-	"github.com/suyashkumar/dicom/pkg/uid"
+	"github.com/needinc/dicom-full-copy/pkg/charset"
+	"github.com/needinc/dicom-full-copy/pkg/debug"
+	"github.com/needinc/dicom-full-copy/pkg/dicomio"
+	"github.com/needinc/dicom-full-copy/pkg/frame"
+	"github.com/needinc/dicom-full-copy/pkg/tag"
+	"github.com/needinc/dicom-full-copy/pkg/uid"
 )
 
 const (
@@ -281,8 +281,8 @@ func SkipPixelData() ParseOption {
 // a PixelData element will be added to the dataset with the
 // PixelDataInfo.IntentionallyUnprocessed = true, and the raw bytes of the
 // entire PixelData element stored in PixelDataInfo.UnprocessedValueData.
-// 
-// In the future, we may be able to extend this functionality to support 
+//
+// In the future, we may be able to extend this functionality to support
 // on-demand processing of elements elsewhere in the library.
 func SkipProcessingPixelDataValue() ParseOption {
 	return func(set *parseOptSet) {

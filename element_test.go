@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/suyashkumar/dicom/pkg/frame"
+	"github.com/needinc/dicom-full-copy/pkg/frame"
 
-	"github.com/suyashkumar/dicom/pkg/tag"
+	"github.com/needinc/dicom-full-copy/pkg/tag"
 )
 
 func TestElement_MarshalJSON_NestedElements(t *testing.T) {
