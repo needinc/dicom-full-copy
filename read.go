@@ -769,7 +769,7 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 
 	//fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 	val, err := r.readValue(*t, vr, vl, readImplicit, d, fc)
-	fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl, "val: ", val)
+	fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 	if err != nil {
 		fmt.Println("Error tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 		log.Println("error reading value ", err)
