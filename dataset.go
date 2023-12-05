@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/suyashkumar/dicom/pkg/tag"
-	"github.com/suyashkumar/dicom/pkg/uid"
+	"github.com/needinc/dicom-full-copy/pkg/tag"
+	"github.com/needinc/dicom-full-copy/pkg/uid"
 )
 
 // ErrorElementNotFound indicates that the requested element was not found in
