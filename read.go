@@ -506,6 +506,7 @@ func (r *reader) readSequence(t tag.Tag, vr string, vl uint32, d *Dataset) (Valu
 	seqElements := &Dataset{}
 	if vl == tag.VLUndefinedLength {
 		for {
+			fmt.Println("Inside Undefined Length Sequence: ", t, vr, vl)
 			subElement, err := r.readElement(seqElements, nil)
 			if err != nil {
 				// Stop reading due to error
@@ -527,6 +528,7 @@ func (r *reader) readSequence(t tag.Tag, vr string, vl uint32, d *Dataset) (Valu
 			sequences.value = append(sequences.value, subElement.Value.(*SequenceItemValue))
 		}
 	} else {
+		fmt.Println("Inside Push Limit Length Sequence: ", t, vr, vl)
 		// Sequence of elements for a total of VL bytes
 		err := r.rawReader.PushLimit(int64(vl))
 		if err != nil {
@@ -767,12 +769,12 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 		//vl = 0
 	}
 
-	//fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
+	fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 	val, err := r.readValue(*t, vr, vl, readImplicit, d, fc)
 	fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 	if err != nil {
-		fmt.Println("Failing size: ", len(val.String()))
-		fmt.Println("Error tag: ", t.String(), " vr: ", vr, " vl: ", vl)
+		//fmt.Println("Failing size: ", len(val.String()))
+		//fmt.Println("Error tag: ", t.String(), " vr: ", vr, " vl: ", vl)
 		log.Println("error reading value ", err)
 		return nil, err
 	}
