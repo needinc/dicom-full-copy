@@ -63,15 +63,17 @@ func (r *reader) readTag() (*tag.Tag, error) {
 
 // TODO: Parsed VR should be an enum. Will require refactors of tag pkg.
 func (r *reader) readVR(isImplicit bool, t tag.Tag) (string, error) {
+	fmt.Println("readVR: ", isImplicit, t)
 	if isImplicit {
 		if entry, err := tag.Find(t); err == nil {
 			return entry.VR, nil
 		}
 		return tag.UnknownVR, nil
 	}
-
+	retVal, err := r.rawReader.ReadString(2)
+	fmt.Println("readVR retVal: ", retVal, err)
 	// Explicit Transfer Syntax, read 2 byte VR:
-	return r.rawReader.ReadString(2)
+	return retVal, err
 
 }
 

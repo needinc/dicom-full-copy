@@ -172,8 +172,10 @@ func Find(tag Tag) (Info, error) {
 	if !ok {
 		// (0000-u-ffff,0000)	UL	GenericGroupLength	1	GENERIC
 		if tag.Group%2 == 0 && tag.Element == 0x0000 {
+			fmt.Println("tag not found in the map ", tag)
 			entry = Info{tag, "UL", "GenericGroupLength", "1"}
 		} else {
+			fmt.Println("tag not found in the map else condn", tag)
 			return Info{}, fmt.Errorf("Could not find tag (0x%x, 0x%x) in dictionary", tag.Group, tag.Element)
 		}
 	}
