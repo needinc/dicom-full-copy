@@ -71,7 +71,7 @@ func (r *reader) readVR(isImplicit bool, t tag.Tag) (string, error) {
 		return tag.UnknownVR, nil
 	}
 	retVal, err := r.rawReader.ReadString(2)
-	fmt.Println("readVR retVal: ", retVal, err)
+	fmt.Println("readVR retVal: ", retVal, len(retVal), err)
 	// Explicit Transfer Syntax, read 2 byte VR:
 	return retVal, err
 
