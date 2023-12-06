@@ -760,23 +760,31 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 	}
 	debug.Logf("readElement: tag: %s", t.String())
 
-	readImplicit := r.rawReader.IsImplicit()
-	readImplicitVR := readImplicit
-	if *t == tag.Item || (t.Group == 0x0040 && t.Element == 0x0000) {
+	vrImplicit := r.rawReader.IsImplicit()
+	vlImplicit := vrImplicit
+	//valueImplicit := vrImplicit
+	if *t == tag.Item {
 		// Always read implicit for item elements
-		readImplicitVR = true
+		vrImplicit = true
+		vlImplicit = true
 	}
 
-	vr, err := r.readVR(readImplicitVR, *t)
+	if t.Group == 0x0040 && t.Element == 0x0000 {
+		vrImplicit = true
+		vlImplicit = false
+	}
+
+	vr, err := r.readVR(vrImplicit, *t)
 	if err != nil {
 		return nil, err
 	}
 	debug.Logf("readElement: vr: %s", vr)
 
-	vl, err := r.readVL(readImplicit, *t, vr)
+	vl, err := r.readVL(vlImplicit, *t, vr)
 	if err != nil {
 		return nil, err
 	}
+
 	debug.Logf("readElement: vl: %d", vl)
 	if vr == "UN" {
 		vr = "SQ"
@@ -786,7 +794,7 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 	}
 
 	fmt.Println("readElement: tag: ", t.String(), " vr: ", vr, " vl: ", vl)
-	val, err := r.readValue(*t, vr, vl, readImplicit, d, fc)
+	val, err := r.readValue(*t, vr, vl, vrImplicit, d, fc)
 	if err != nil {
 		//fmt.Println("Failing size: ", len(val.String()))
 		//fmt.Println("Error tag: ", t.String(), " vr: ", vr, " vl: ", vl)
