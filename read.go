@@ -767,8 +767,8 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 	debug.Logf("readElement: vl: %d", vl)
 	if vr == "UN" {
 		vr = "SQ"
-		dummyElem := &Element{Tag: *t, ValueRepresentation: tag.GetVRKind(*t, vr), RawValueRepresentation: vr, ValueLength: vl, Value: nil}
-		fmt.Println("UN Element: ", dummyElem.String())
+		/*dummyElem := &Element{Tag: *t, ValueRepresentation: tag.GetVRKind(*t, vr), RawValueRepresentation: vr, ValueLength: vl, Value: nil}
+		fmt.Println("UN Element: ", dummyElem.String())*/
 		//vl = 0
 	}
 
