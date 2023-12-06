@@ -761,7 +761,7 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 	debug.Logf("readElement: tag: %s", t.String())
 
 	readImplicit := r.rawReader.IsImplicit()
-	if *t == tag.Item {
+	if *t == tag.Item || (t.Group == 0x0040 && t.Element == 0x0000) {
 		// Always read implicit for item elements
 		readImplicit = true
 	}
