@@ -780,9 +780,14 @@ func (r *reader) readElement(d *Dataset, fc chan<- *frame.Frame) (*Element, erro
 	}
 	debug.Logf("readElement: vr: %s", vr)
 
-	vl, err := r.readVL(vlImplicit, *t, vr)
-	if err != nil {
-		return nil, err
+	var vl uint32
+	if t.Group == 0x0040 && t.Element == 0x0000 {
+		vl = 4
+	} else {
+		vl, err = r.readVL(vlImplicit, *t, vr)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	debug.Logf("readElement: vl: %d", vl)
