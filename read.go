@@ -70,8 +70,18 @@ func (r *reader) readVR(isImplicit bool, t tag.Tag) (string, error) {
 		}
 		return tag.UnknownVR, nil
 	}
-	retVal, err := r.rawReader.ReadString(2)
-	fmt.Println("readVR retVal: ", retVal, len(retVal), err)
+	var retVal string
+	var err error
+	if t.Group == 0x0040 && t.Element == 0x0000 {
+		retVal, err = r.rawReader.ReadString(100)
+		// convert retVal to bytes
+		fmt.Println("Bytes 100: ", []byte(retVal))
+		fmt.Println("100 readVR retVal: ", retVal, len(retVal), err)
+	} else {
+		retVal, err = r.rawReader.ReadString(2)
+		fmt.Println("readVR retVal: ", retVal, len(retVal), err)
+	}
+
 	// Explicit Transfer Syntax, read 2 byte VR:
 	return retVal, err
 
